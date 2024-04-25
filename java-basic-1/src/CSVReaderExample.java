@@ -11,11 +11,11 @@ String csvSplitBy = ","; // CSVファイルの区切り文字を指定してく�
         while ((line = br.readLine()) != null) {
             // 1行をカンマで分割して単語の配列を取得
             String[] words = line.split(csvSplitBy);
-
+            System.out.println(words[3]);
             // 単語を一つずつ出力
-            for (String word : words) {
-                System.out.println(word);
-            }
+            /*for (String word : words) {
+                //System.out.println(word);
+            }*/
         }//while end
     } catch (IOException e) {
         e.printStackTrace();
