@@ -6,6 +6,41 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MayExceptionTest",
+            "request": "launch",
+            "mainClass": "MayExceptionTest",
+            "projectName": "java-basic-2_1cc8e66a"
+        },
+        {
+            "type": "java",
+            "name": "MyExceptionTest",
+            "request": "launch",
+            "mainClass": "MyExceptionTest",
+            "projectName": "java-basic-2_1cc8e66a"
+        },
+        {
+            "type": "java",
+            "name": "HeikinCKadai",
+            "request": "launch",
+            "mainClass": "HeikinCKadai",
+            "projectName": "java-basic-2_1cc8e66a"
+        },
+        {
+            "type": "java",
+            "name": "HeikinB",
+            "request": "launch",
+            "mainClass": "HeikinB",
+            "projectName": "java-basic-2_1cc8e66a"
+        },
+        {
+            "type": "java",
+            "name": "XmasTreeKadai",
+            "request": "launch",
+            "mainClass": "XmasTreeKadai",
+            "projectName": "java-basic-2_1cc8e66a"
+        },
+        {
+            "type": "java",
             "name": "XmasTree",
             "request": "launch",
             "mainClass": "XmasTree",
