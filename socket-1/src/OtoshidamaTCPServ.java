@@ -11,32 +11,40 @@ public class OtoshidamaTCPServ {
             Scanner scanner = new Scanner(System.in);
             System.out.println("ポートを入力してください(5000など)");
             int port = scanner.nextInt();
-            scanner.close();
             System.out.println("localhost" + port + "番ポートで待機します");
             ServerSocket server = new ServerSocket(port);
             Socket socket = server.accept();
             System.out.println("接続しました。相手の入力を待っています......");
             ObjectInputStream ois = new ObjectInputStream((socket.getInputStream()));
-
-            Otoshidama otoshidama = (Otoshidama) ois.readObject();
-
-            String ageOtoshidama = otoshidama.getAge();
-            System.out.println("年齢は" + ageOtoshidama + "歳。");
-            String amoutOfOtoshidama = otoshidama.getOtoshidama();
-            System.out.println("お年玉の希望金額は" + amoutOfOtoshidama +"円。");
-
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-            
-            Otoshidama response = new Otoshidama();
-            response.setAge("サーバーです。あけましておめでとう。" + ageOtoshidama + "歳のあなたのお年玉の金額は・・・");
-            response.setOtoshidama(response.caliculateOtoshidama(Integer.parseInt(ageOtoshidama), amoutOfOtoshidama));
 
-            oos.writeObject(response);
-            oos.flush();
 
+            while (true) {
+
+                Otoshidama otoshidama = (Otoshidama) ois.readObject();
+
+                String ageOtoshidama = otoshidama.getAge();
+                if (ageOtoshidama.equals("exit") || ageOtoshidama.equals("quit")) {
+                    break;
+                }
+                System.out.println("年齢は" + ageOtoshidama + "歳。");
+                String amoutOfOtoshidama = otoshidama.getOtoshidama();
+                System.out.println("お年玉の希望金額は" + amoutOfOtoshidama +"円。");
+
+                
+                Otoshidama response = new Otoshidama();
+                response.setAge("サーバーです。あけましておめでとう。" + ageOtoshidama + "歳のあなたのお年玉の金額は・・・");
+                response.setOtoshidama(response.caliculateOtoshidama(Integer.parseInt(ageOtoshidama), amoutOfOtoshidama));
+
+                oos.writeObject(response);
+                oos.flush();
+
+                
+            }
             ois.close();
             oos.close();
             // socketの終了。
+            scanner.close();
             socket.close();
             server.close();
 
