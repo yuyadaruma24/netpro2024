@@ -13,8 +13,8 @@ public class OtoshidamaTEPClient {
             System.out.println("localhostの" + port + "番ポートに接続を要求します");
             Socket socket = new Socket("localhost", port);
             System.out.println("接続されました");
-            while (true) {
-                System.out.println("お年玉チェック!!");
+            
+            System.out.println("お年玉チェック!!");
                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
                 System.out.println("年齢を入力してください(例:18)");
                 String age = scanner.next();
@@ -38,8 +38,7 @@ public class OtoshidamaTEPClient {
                 System.out.println(replayOtoshidama);
                 ois.close();
                 oos.close();
-                socket.close();
-            }
+                socket.close();    
             
         }
         catch (BindException be) {
