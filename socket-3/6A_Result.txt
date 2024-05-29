@@ -1,0 +1,5 @@
+C:\Users\yuyah\Desktop\netpro2024\socket-3> cmd /C "C:\Users\yuyah\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\java\21\bin\java.exe -XX:+ShowCodeDetailsInExceptionMessages -cp C:\Users\yuyah\Desktop\netpro2024\socket-3\bin networkingUdp.UDPServerABC "
+受信abc
+
+C:\Users\yuyah\Desktop\netpro2024\socket-3> cmd /C "C:\Users\yuyah\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\java\21\bin\java.exe -XX:+ShowCodeDetailsInExceptionMessages -cp C:\Users\yuyah\Desktop\netpro2024\socket-3\bin networkingUdp.UDPClientABC "
+受信: ABC
