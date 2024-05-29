@@ -1,0 +1,23 @@
+C:\Users\yuyah\Desktop\netpro2024> cmd /C "C:\Users\yuyah\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\java\21\bin\java.exe @C:\Users\yuyah\AppData\Local\Temp\cp_6qxandivb2n7f08iscz9tpoq2.argfile thread.ExThreadsMain "
+スレッド1：thread課題
+スレッド2：合計は1
+スレッド1：thread課題
+スレッド2：合計は2
+スレッド1：thread課題
+スレッド2：合計は3
+スレッド1：thread課題
+スレッド2：合計は4
+スレッド1：thread課題
+スレッド2：合計は5
+スレッド2：合計は6
+スレッド1：thread課題
+スレッド1：thread課題
+スレッド2：合計は7
+スレッド1：thread課題
+スレッド2：合計は8
+スレッド1：thread課題
+スレッド2：合計は9
+スレッド1：thread課題
+スレッド2：合計は10
+スレッド1：thread課題
+スレッド2：合計は11

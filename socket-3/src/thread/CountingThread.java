@@ -1,4 +1,5 @@
 package thread;
+
 public class CountingThread extends Thread {
     private int count = 0;
 
