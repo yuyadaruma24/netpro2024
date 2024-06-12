@@ -9,8 +9,7 @@ public class CheckLocalAddreess{
         System.out.println("Host name is: "+ addr.getHostName());
         // Host Address
         System.out.println("Ip address is: "+ addr.getHostAddress());
-    }
 
-    
+    }
 
 }
