@@ -2,30 +2,31 @@ package guibasic;
 
 import java.awt.*;
 import java.awt.event.*;
-
-//配列で5つのボールを動かしてみよう
+import java.util.Random;
 
 public class MovingBallAWT {
+	
+	static int xSize = 500;
+	static int ySize = 500;
 	public static void main(String[] args) {
 		FFrame f = new FFrame();
-		f.setSize(500, 500);
+		f.setSize(xSize, ySize);
 		f.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}
 		});
-		f.show();;
+		f.setVisible(true);
 	}
 
 
 	static class FFrame extends Frame implements Runnable {
 
 		Thread th;
-		Ball myBall1;
-		Ball myBall2;
+		Ball[] balls;
+		Random r = new Random();
 
 		private boolean enable = true;
-		private int counter = 0;
 
 		FFrame() {
 			th = new Thread(this);
@@ -33,41 +34,33 @@ public class MovingBallAWT {
 		}
 
 		public void run() {
-
-			for(int i = 0;i<=9;i++){
-				
+			balls = new Ball[5];
+			for (int i = 0; i < balls.length; i++) {
+				balls[i] = new Ball();
+				balls[i].setPosition(r.nextInt(xSize), r.nextInt(ySize));
+				balls[i].setR(r.nextInt(20) + 10);
+				balls[i].setColor(r.nextInt(256), r.nextInt(256), r.nextInt(256));
 			}
-			myBall1 = new Ball();
-			myBall1.setPosition(200, 150);
-			myBall1.setR(10);
-			myBall1.setColor(Color.RED);
-
-			myBall2 = new Ball();
-			myBall2.setPosition(50, 250);
-			myBall2.setR(20);
-			myBall2.setColor(Color.GREEN);
 
 			while (enable) {
-
 				try {
-					th.sleep(100);
-					counter++;
-					if (counter >= 200) enable = false;
+					Thread.sleep(30);
 				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
 
-
-				myBall1.move();
-				myBall2.move();
+				for (Ball ball : balls) {
+					ball.move();
+				}
 
 				repaint();  // paint()メソッドが呼び出される
 			}
 		}
 
-
 		public void paint(Graphics g) {
-			myBall1.draw(g);
-			myBall2.draw(g);
+			for (Ball ball : balls) {
+				ball.draw(g);
+			}
 		}
 
 		// Ball というインナークラスを作る
@@ -75,23 +68,27 @@ public class MovingBallAWT {
 			int x;
 			int y;
 			int r; // 半径
-			Color c = Color.RED;
+			Color c = new Color(0, 0, 0);
+
+			Random rand = new Random();
 
 			int xDir = 1;  // 1:+方向  -1: -方向
 			int yDir = 1;
 
-			void setColor(Color c) {
-				this.c = c;
+			void setColor(int r, int g, int b) {
+				this.c = new Color(r, g, b);
 			}
 
-
 			void move() {
+				boolean hitWall = false;
 
-				if ((xDir == 1) && (x >= 300)) {
+				if ((xDir == 1) && (x >= xSize - r * 2)) {
 					xDir = -1;
+					hitWall = true;
 				}
-				if ((xDir == -1) && (x <= 100)) {
+				if ((xDir == -1) && (x <= 0)) {
 					xDir = 1;
+					hitWall = true;
 				}
 
 				if (xDir == 1) {
@@ -100,12 +97,13 @@ public class MovingBallAWT {
 					x = x - 10;
 				}
 
-
-				if ((yDir == 1) && (y >= 300)) {
+				if ((yDir == 1) && (y >= ySize - r * 2)) {
 					yDir = -1;
+					hitWall = true;
 				}
-				if ((yDir == -1) && (y <= 100)) {
+				if ((yDir == -1) && (y <= 0 + r)) {
 					yDir = 1;
+					hitWall = true;
 				}
 
 				if (yDir == 1) {
@@ -114,6 +112,9 @@ public class MovingBallAWT {
 					y = y - 10;
 				}
 
+				if (hitWall) {
+					setColor(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
+				}
 			}
 
 			void setPosition(int x, int y) {
@@ -129,9 +130,6 @@ public class MovingBallAWT {
 				g.setColor(c);
 				g.fillOval(x, y, 2 * r, 2 * r);  // rは半径なので2倍にする
 			}
-
-		}//innner class Ball end
-
+		} // inner class Ball end
 	}
-
 }
